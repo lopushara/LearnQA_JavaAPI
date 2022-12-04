@@ -22,7 +22,7 @@ public class UserAuthTest extends BaseTestCase {
     @BeforeEach
     public void loginUser(){
         Map<String, String> authData = new HashMap<>();
-        authData.put("email", "vikontov@example.com");
+        authData.put("email", "vinkotov@example.com");
         authData.put("password", "1234");
 
         Response responseGetAuth = RestAssured
@@ -52,7 +52,7 @@ public class UserAuthTest extends BaseTestCase {
     @ValueSource(strings = {"cookie", "headers"})
     public void testNegativeAuthUser(String condition) {
         RequestSpecification spec = RestAssured.given();
-        spec.baseUri("");
+        spec.baseUri("https://playground.learnqa.ru/api/user/auth");
 
         if (condition.equals("cookie")) {
             spec.cookie("auth_sid", this.cookie);
