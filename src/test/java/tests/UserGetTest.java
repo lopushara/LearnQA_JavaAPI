@@ -1,7 +1,9 @@
 package tests;
 
+import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import org.junit.jupiter.api.Test;
@@ -44,7 +46,28 @@ public class UserGetTest extends BaseTestCase {
                 .andReturn();
 
         String[] expectedFields = {"username", "firstName", "lastName", "email"};
-
+        System.out.println(responseUserData.asString());
         Assertions.assertJsonHasFields(responseUserData, expectedFields);
+    }
+
+    @Test
+    @Description("This test authorize and trying to get another user information")
+    public void testGetUserDetailsAuthAsAnotherUser() {
+        Map<String, String> authData = new HashMap<>();
+        authData.put("email", "vinkotov@example.com");
+        authData.put("password", "1234");
+
+        Response responseGetAuth = ApiCoreRequests
+                .makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
+
+        String token = this.getHeader(responseGetAuth, "x-csrf-token");
+        String cookie = this.getCookie(responseGetAuth, "auth_sid");
+
+        Response responseUserData = ApiCoreRequests.makeGetRequest("https://playground.learnqa.ru/api/user/1", token, cookie);
+
+        String[] unExpectedFields = {"firstName", "lastName", "email"};
+
+        Assertions.assertJsonHasField(responseUserData, "username");
+        Assertions.assertJsonHasNotFields(responseUserData, unExpectedFields);
     }
 }

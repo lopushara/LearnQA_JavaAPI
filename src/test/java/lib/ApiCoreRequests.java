@@ -10,8 +10,9 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class ApiCoreRequests {
+
     @Step("Make a GET-request with token and auth cookie")
-    public Response makeGetRequest(String url, String token, String cookie) {
+    public static Response makeGetRequest(String url, String token, String cookie) {
         return given()
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
@@ -21,7 +22,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a GET-request with auth cookie only")
-    public Response makeGetRequestWithCookie(String url, String cookie) {
+    public static Response makeGetRequestWithCookie(String url, String cookie) {
         return given()
                 .filter(new AllureRestAssured())
                 .cookie("auth_sid", cookie)
@@ -30,7 +31,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a GET-request with auth token only")
-    public Response makeGetRequestWithToken(String url, String token) {
+    public static Response makeGetRequestWithToken(String url, String token) {
         return given()
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
