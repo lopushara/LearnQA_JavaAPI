@@ -110,7 +110,7 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertJsonByName(responseUser2Data, "username", "learnqa");
 
 
-        //LOGIN UNDER USER_ADMIN (BUT MAYBE NOT...)
+        //LOGIN UNDER USER_ADMIN
         Map<String, String> authDataAdmin = new HashMap<>();
         authDataAdmin.put("email", "vinkotov@example.com");
         authDataAdmin.put("password", "1234");
