@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class UserGetTest extends BaseTestCase {
 
     @Test
     @Description("This test authorize and trying to get another user information")
+    @DisplayName("Negative get test. Get another user information")
     public void testGetUserDetailsAuthAsAnotherUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
