@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -18,6 +21,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test trying to delete admin user")
     @DisplayName("Test negative delete. Delete admin user")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testDeleteUserAdmin() {
 
         //LOGIN
@@ -40,6 +45,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test create user and delete him")
     @DisplayName("Positive delete test. Create and delete user")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testDeleteUser() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -85,6 +92,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test trying to delete user2 by user1")
     @DisplayName("Negative test delete. Delete another user")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testDeleteAnotherUser() {
         //GENERATE USER_1
         Map<String, String> user1Data = DataGenerator.getRegistrationData();

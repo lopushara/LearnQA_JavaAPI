@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.Assertions;
@@ -17,6 +20,10 @@ import java.util.Map;
 
 public class UserRegisterTest extends BaseTestCase {
     @Test
+    @Description("This test trying to create user with already existing email")
+    @DisplayName("Test create user with existing email")
+    @Severity(SeverityLevel.CRITICAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testCreateUserWithExistingEmail() {
         String email = "vinkotov@example.com";
 
@@ -37,6 +44,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test trying to create user with invalid email")
     @DisplayName("Test negative creation. Invalid email")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testCreateUserWithInvalidEmail() {
         Map<String, String> userData = new HashMap<>();
         userData.put("email", DataGenerator.getRandomInvalidEmail());
@@ -52,6 +61,8 @@ public class UserRegisterTest extends BaseTestCase {
     @ValueSource(strings = {"email", "password", "username", "firstName", "lastName"})
     @Description("This test trying to create user without one of field")
     @DisplayName("Test negative creation. Without one of field")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testCreateUserWithoutField(String keyField) {
         Map<String, String> userData = new HashMap<>();
         userData.put(keyField, null);
@@ -66,6 +77,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test trying to create user with short name")
     @DisplayName("Test negative creation. Short name")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testCreateUserShortName() {
         Map<String, String> userData = new HashMap<>();
         userData.put("username", "a");
@@ -80,6 +93,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test trying to create user with long name")
     @DisplayName("Test negative creation. Long name")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testCreateUserLongName() {
         Map<String, String> userData = new HashMap<>();
         userData.put("username", DataGenerator.getLongString(251));
@@ -92,8 +107,9 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @Description("This test create user")
+    @DisplayName("Test create user")
     public void testCreateUserSuccessfully() {
-        String email = DataGenerator.getRandomEmail();
 
         Map<String, String> userdata = DataGenerator.getRegistrationData();
 

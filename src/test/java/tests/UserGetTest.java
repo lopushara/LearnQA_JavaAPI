@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -14,6 +17,10 @@ import java.util.Map;
 
 public class UserGetTest extends BaseTestCase {
     @Test
+    @Description("This test trying to get user data without authorization")
+    @DisplayName("Test get user data")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testGetUserdataNotAuth() {
         Response responseUserData = RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -26,6 +33,10 @@ public class UserGetTest extends BaseTestCase {
     }
 
     @Test
+    @Description("This test trying to get self user data")
+    @DisplayName("Test get self user data")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testGetUserDetailsAuthAsSameUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -54,6 +65,8 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("This test authorize and trying to get another user information")
     @DisplayName("Negative get test. Get another user information")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testGetUserDetailsAuthAsAnotherUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");

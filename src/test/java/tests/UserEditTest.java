@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -18,6 +21,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test created user and edit firstname field")
     @DisplayName("Positive create and edit user test")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testEditJustCreatedTest() {
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -57,6 +62,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test trying to edit user without authorization")
     @DisplayName("Test negative edit. Edit user without authorization")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testEditUserUnauthorized() {
         String newName = "Changed Name";
         Map<String, String> bodyData = new HashMap<>();
@@ -71,6 +78,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test authorize and trying to edit another user information")
     @DisplayName("Test negative edit. Edit another user")
+    @Severity(SeverityLevel.NORMAL)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testEditAnotherUser() {
         //GENERATE USER_1
         Map<String, String> user1Data = DataGenerator.getRegistrationData();
@@ -137,6 +146,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test trying to edit current user information to invalid email")
     @DisplayName("Negative test edition. Invalid email")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testEditCurrentUserInvalidEmail() {
         //CREATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -172,6 +183,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test trying to edit current user information to short firstName")
     @DisplayName("Negative test edition. Short firstName")
+    @Severity(SeverityLevel.MINOR)
+    @Link("https://docs.qameta.io/allure-report/#_features")
     public void testEditCurrentUserShort() {
         //CREATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
